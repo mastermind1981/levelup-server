@@ -12,11 +12,18 @@ Request:
 
 Resposne:
 
-    {
-        "name": "Hazel Ernst",
-        "lvl": 10,
-        "xp": 5
-    }
+    [
+        {
+            "name": "Hazel Ernst",
+            "lvl": 9,
+            "xp": 9
+        },
+        {
+            "name": "Caleb Lewis",
+            "lvl": 5,
+            "xp": 5
+        }
+    ]
 
 #### Get a user ####
 
@@ -26,18 +33,11 @@ Request:
 
 Resposne:
 
-    [
-        {
-            "name": "Hazel Ernst",
-            "lvl": 10,
-            "xp": 5
-        },
-        {
-            "name": "Caleb Lewis",
-            "lvl": 5,
-            "xp": 10
-        }
-    ]
+    {
+        "name": "Hazel Ernst",
+        "lvl": 9,
+        "xp": 9
+    }
 
 #### Untz a user ####
 
@@ -52,7 +52,7 @@ Response:
     {
         "name": "Hazel Ernst",
         "lvl": 10,
-        "xp": 5
+        "xp": 0
     }
 
 ## Operation ##
