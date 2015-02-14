@@ -9,7 +9,11 @@
   },
   "scripts": {
     "start": "forever start server.js",
-    "stop": "forever stop server.js"
+    "stop": "forever stop server.js",
+    "test": "jasmine-node specs --verbose"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "frisby": "^0.8.5"
+  }
 }
