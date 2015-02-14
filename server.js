@@ -66,8 +66,13 @@ io.on("connection", function(socket)
         socket.emit("add user", users[name]);
     }
 
-    UserStore.on("add", function(user)
+    UserStore.on("add user", function(user)
     {
         socket.emit("add user", user);
+    })
+
+    UserStore.on("untz user", function(user)
+    {
+        socket.emit("untz user", user);
     })
 });

@@ -49,7 +49,7 @@ UserStore.prototype.addUser = function(name)
 
     this.users[name] = user;
 
-    this.trigger("add", user);
+    this.trigger("add user", user);
     return user;
 }
 
@@ -69,7 +69,7 @@ UserStore.prototype.untzUser = function(name)
         user.xp = 0;
     }
 
-    this.trigger("untz", user);
+    this.trigger("untz user", user);
     return user;
 }
 
