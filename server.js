@@ -60,6 +60,7 @@ server.listen(80, function()
 var io = socketio(server);
 io.on("connection", function(socket)
 {
+    var users = UserStore.getAllUsers()
     for(var name in users)
     {
         socket.emit("add user", users[name]);
