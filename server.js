@@ -1,10 +1,16 @@
+var fs = require("fs");
+var marked = require("marked");
 var express = require("express");
 
 var application = express();
 
 application["get"]("/", function(request, response)
 {
-    response.send("Hello and welcome to LevelUp!");
+    fs.readFile("./readme.md", function(error, markdown)
+    {
+        markup = marked(markdown.toString());
+        response.send(markup);
+    });
 });
 
 application["get"]("/users", function(request, response)

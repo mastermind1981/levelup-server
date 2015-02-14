@@ -5,7 +5,8 @@
   "description": "Encouraging exercise through gamification.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.11.2"
+    "express": "^4.11.2",
+    "marked": "^0.3.3"
   },
   "scripts": {
     "start": "forever start server.js",
