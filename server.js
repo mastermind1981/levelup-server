@@ -4,7 +4,7 @@ var application = express();
 
 application.get("/", function(request, response)
 {
-    response.send("Hello, and welcome to LevelUp!");
+    response.send("Hello and welcome to LevelUp!");
 });
 
 application.get("/untz/:name", function(request, response)
@@ -31,6 +31,6 @@ application.get("/untz/:name", function(request, response)
     response.send(user);
 })
 
-application.listen(8080);
+application.listen(process.env.PORT || 8080);
 
 var users = {};
