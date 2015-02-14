@@ -6,7 +6,7 @@ var application = express();
 
 application["get"]("/", function(request, response)
 {
-    fs.readFile("./readme.md", function(error, markdown)
+    fs.readFile("README.md", function(error, markdown)
     {
         markup = marked(markdown.toString());
         response.send(markup);
