@@ -2,12 +2,23 @@ var express = require("express");
 
 var application = express();
 
-application.get("/", function(request, response)
+application["get"]("/", function(request, response)
 {
     response.send("Hello and welcome to LevelUp!");
 });
 
-application.get("/untz/:name", function(request, response)
+application["get"]("/users", function(request, response)
+{
+    response.send(users);
+});
+
+application["get"]("/users/:name", function(request, response)
+{
+    var name = request.params.name;
+    response.send(users[name]);
+});
+
+application["get"]("/users/:name/untz", function(request, response)
 {
     var name = request.params.name;
     
@@ -29,7 +40,7 @@ application.get("/untz/:name", function(request, response)
     }
 
     response.send(user);
-})
+});
 
 application.listen(process.env.PORT || 8080);
 
