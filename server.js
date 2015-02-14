@@ -7,12 +7,13 @@ application.get("/", function(request, response)
     response.send("Hello, and welcome to LevelUp!");
 });
 
-application.get("/:name", function(request, response)
+application.get("/untz/:name", function(request, response)
 {
     var name = request.params.name;
     
     if(!users[name]) {
         users[name] = {
+            name: name,
             lvl: 1,
             xp: 0
         }
@@ -27,7 +28,7 @@ application.get("/:name", function(request, response)
         user.xp = 0;
     }
 
-    response.send(name + ": xp is " + user.xp + ", lvl is " + user.lvl);
+    response.send(user);
 })
 
 application.listen(8080);
