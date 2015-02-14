@@ -10,6 +10,6 @@
   "scripts": {
     "start": "forever start server.js",
     "stop": "forever stop server.js"
-  }
+  },
   "license": "ISC"
 }
