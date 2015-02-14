@@ -28,7 +28,6 @@ application["get"]("/", function(request, response)
 application["get"]("/users", function(request, response)
 {
     var users = UserStore.getAllUsers();
-    console.log(users);
     response.send(users);
 });
 
@@ -66,9 +65,8 @@ io.on("connection", function(socket)
         socket.emit("add user", users[name]);
     }
 
-    socket.on("add user", function(name, user)
+    UserStore.on("add", function(user)
     {
-        users[name] = user;
-        socket.broadcast.emit("add user", user)
-    });
+        socket.emit("add user", user);
+    })
 });
