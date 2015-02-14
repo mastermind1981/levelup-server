@@ -11,7 +11,8 @@
   "scripts": {
     "start": "forever start server.js",
     "stop": "forever stop server.js",
-    "test": "jasmine-node specs --verbose"
+    "restart": "forever restart server.js",
+    "test": "jasmine-node specs --verbose",
   },
   "license": "ISC",
   "devDependencies": {
