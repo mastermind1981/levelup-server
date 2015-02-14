@@ -4,13 +4,48 @@ LevelUp is a platform to encourage exercise through gamification. This is the se
 
 ## Documentation ##
 
-#### Untz a User ####
+#### Get all users ####
+
+Request:
+
+    GET /users
+
+Resposne:
+
+    {
+        "name": "Hazel Ernst",
+        "lvl": 10,
+        "xp": 5
+    }
+
+#### Get a user ####
+
+Request:
+
+    GET /users/[NAME]
+
+Resposne:
+
+    [
+        {
+            "name": "Hazel Ernst",
+            "lvl": 10,
+            "xp": 5
+        },
+        {
+            "name": "Caleb Lewis",
+            "lvl": 5,
+            "xp": 10
+        }
+    ]
+
+#### Untz a user ####
 
 "Untzing" a user will increment the ``xp``. If the ``xp`` is big enough, than the  ``lvl`` is incremented as well.
 
 Request:
 
-    GET /untz/[NAME]
+    GET /users/[NAME]/untz
  
 Response:
 
