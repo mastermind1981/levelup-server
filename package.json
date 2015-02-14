@@ -1,0 +1,11 @@
+{
+  "name": "LevelUp",
+  "version": "0.0.1",
+  "author": "Andrew McPherson",
+  "description": "Encouraging exercise through gamification.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.11.2"
+  },
+  "license": "ISC"
+}
