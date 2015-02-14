@@ -95,3 +95,5 @@ Test the code from the ``specs``.
     OR
     
     npm test
+
+Some of the tests will fail if the server isn't running.
