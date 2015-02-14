@@ -1,6 +1,21 @@
+//////////////
+//Importing//
+////////////
+
 var fs = require("fs");
+var http = require("http");
 var marked = require("marked");
 var express = require("express");
+
+///////////////
+//Databasing//
+/////////////
+
+var users = {};
+
+////////////
+//Routing//
+//////////
 
 var application = express();
 
@@ -28,8 +43,10 @@ application["get"]("/users/:name/untz", function(request, response)
 {
     var name = request.params.name;
     
-    if(!users[name]) {
-        users[name] = {
+    if(!users[name])
+    {
+        users[name] =
+        {
             name: name,
             lvl: 1,
             xp: 0
@@ -48,6 +65,27 @@ application["get"]("/users/:name/untz", function(request, response)
     response.send(user);
 });
 
-application.listen(process.env.PORT || 8080);
+////////////
+//Serving//
+//////////
 
-var users = {};
+var server = http.Server(application);
+server.listen(80, function()
+{
+    console.log("LevelUp is on!");
+});
+
+//////////////
+//Streaming//
+////////////
+
+var io = require("socket.io")(server);
+io.on("connection", function(socket)
+{
+    socket.emit("news", "abcdefg!")
+    socket.on("renews", function(data)
+    {
+        console.log(data)
+    });
+});
+
