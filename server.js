@@ -6,12 +6,9 @@ var fs = require("fs");
 var http = require("http");
 var marked = require("marked");
 var express = require("express");
+var socketio = require("socket.io");
 
-///////////////
-//Databasing//
-/////////////
-
-var users = {};
+var UserStore = require("./UserStore.js");
 
 ////////////
 //Routing//
@@ -30,38 +27,20 @@ application["get"]("/", function(request, response)
 
 application["get"]("/users", function(request, response)
 {
+    var users = UserStore.getAllUsers();
+    console.log(users);
     response.send(users);
 });
 
 application["get"]("/users/:name", function(request, response)
 {
-    var name = request.params.name;
-    response.send(users[name]);
+    var user = UserStore.getUser(request.params.name);
+    response.send(user);
 });
 
 application["get"]("/users/:name/untz", function(request, response)
 {
-    var name = request.params.name;
-    
-    if(!users[name])
-    {
-        users[name] =
-        {
-            name: name,
-            lvl: 1,
-            xp: 0
-        }
-    }
-
-    var user = users[name];
-
-    user.xp += 1;
-    if(user.xp > 10)
-    {
-        user.lvl += 1;
-        user.xp = 0;
-    }
-
+    var user = UserStore.untzUser(request.params.name);
     response.send(user);
 });
 
@@ -79,13 +58,17 @@ server.listen(80, function()
 //Streaming//
 ////////////
 
-var io = require("socket.io")(server);
+var io = socketio(server);
 io.on("connection", function(socket)
 {
-    socket.emit("news", "abcdefg!")
-    socket.on("renews", function(data)
+    for(var name in users)
     {
-        console.log(data)
+        socket.emit("add user", users[name]);
+    }
+
+    socket.on("add user", function(name, user)
+    {
+        users[name] = user;
+        socket.broadcast.emit("add user", user)
     });
 });
-
