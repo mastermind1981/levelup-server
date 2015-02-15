@@ -22,6 +22,8 @@ var MyUsers = new UserStore();
 
 var application = express();
 
+application["use"](express.static("./static"));
+
 application["get"]("/help", function(request, response)
 {
     fs.readFile("README.md", function(error, markdown)
