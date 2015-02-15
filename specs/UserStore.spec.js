@@ -57,6 +57,14 @@ describe("UserStore", function()
         }
     });
 
+    it("can't except methods without arguments", function()
+    {
+        expect(MyUsers.addUser).toThrow(new Error("Invalid Name"));
+        expect(MyUsers.getUser).toThrow(new Error("Invalid Name"));
+        expect(MyUsers.hasUser).toThrow(new Error("Invalid Name"));
+        expect(MyUsers.untzUser).toThrow(new Error("Invalid Name"));
+    });
+
     //todo: remove a user
     //todo: get users when no users
 });
