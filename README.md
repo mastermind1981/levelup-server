@@ -1,5 +1,8 @@
 # LevelUp Server #
 
+[![Build](https://travis-ci.org/arcym/levelup-server.svg)](https://travis-ci.org/viditor/cumulonimbus)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://cumulonimbus.mit-license.org)
+
 LevelUp is a platform to encourage exercise through gamification. This is the server that supports the operations of the applications.
 
 ## Documentation ##
