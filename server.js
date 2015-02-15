@@ -22,7 +22,7 @@ var MyUsers = new UserStore();
 
 var application = express();
 
-application["get"]("/", function(request, response)
+application["get"]("/help", function(request, response)
 {
     fs.readFile("README.md", function(error, markdown)
     {
@@ -55,6 +55,11 @@ application["get"]("/nuke", function(request, response)
     response.send(users)
 });
 
+application["all"]("/*", function(request, response)
+{
+    response.status(404).send("..what?");
+});
+
 ////////////
 //Serving//
 //////////
@@ -77,7 +82,7 @@ io.on("connection", function(socket)
     {
         socket.emit("add user", users[name]);
     }
-    
+
     MyUsers.on("add user", function(user)
     {
         socket.emit("add user", user);
