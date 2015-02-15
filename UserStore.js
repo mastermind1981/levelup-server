@@ -94,4 +94,4 @@ UserStore.prototype.on = function(action, listener)
     this.listeners[action].push(listener);
 }
 
-module.exports = new UserStore();
+module.exports = UserStore;

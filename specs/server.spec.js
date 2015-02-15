@@ -1,8 +1,6 @@
 var frisby = require("frisby");
 
-var port = process.env.PORT || 8080;
-var address = process.env.ADDRESS || "http://localhost";
-var server = address + ":" + port;
+var server = "http://localhost";
 
 frisby.create("Untz a user")
     .get(server + "/users/hazel/untz")

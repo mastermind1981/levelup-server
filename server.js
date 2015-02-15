@@ -10,6 +10,12 @@ var socketio = require("socket.io");
 
 var UserStore = require("./UserStore.js");
 
+/////////////////
+//Initializing//
+///////////////
+
+var MyUsers = new UserStore();
+
 ////////////
 //Routing//
 //////////
@@ -27,19 +33,19 @@ application["get"]("/", function(request, response)
 
 application["get"]("/users", function(request, response)
 {
-    var users = UserStore.getAllUsers();
+    var users = MyUsers.getAllUsers();
     response.send(users);
 });
 
 application["get"]("/users/:name", function(request, response)
 {
-    var user = UserStore.getUser(request.params.name);
+    var user = MyUsers.getUser(request.params.name);
     response.send(user);
 });
 
 application["get"]("/users/:name/untz", function(request, response)
 {
-    var user = UserStore.untzUser(request.params.name);
+    var user = MyUsers.untzUser(request.params.name);
     response.send(user);
 });
 
@@ -60,18 +66,18 @@ server.listen(80, function()
 var io = socketio(server);
 io.on("connection", function(socket)
 {
-    var users = UserStore.getAllUsers()
+    var users = MyUsers.getAllUsers()
     for(var name in users)
     {
         socket.emit("add user", users[name]);
     }
 
-    UserStore.on("add user", function(user)
+    MyUsers.on("add user", function(user)
     {
         socket.emit("add user", user);
     })
 
-    UserStore.on("untz user", function(user)
+    MyUsers.on("untz user", function(user)
     {
         socket.emit("untz user", user);
     })
