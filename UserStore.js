@@ -64,7 +64,7 @@ UserStore.prototype.untzUser = function(name)
     var user = this.getUser(name);
 
     user.xp += 1;
-    if(user.xp > 10)
+    if(user.xp >= 10)
     {
         user.lvl += 1;
         user.xp = 0;
