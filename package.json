@@ -10,8 +10,8 @@
     "socket.io": "^1.3.4"
   },
   "scripts": {
-    "start": "sudo forever start server.js",
-    "stop": "sudo forever stop server.js",
+    "start": "forever start server.js",
+    "stop": "forever stop server.js",
     "test": "jasmine-node specs --verbose"
   },
   "license": "ISC",

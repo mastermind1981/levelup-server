@@ -67,9 +67,9 @@ application["all"]("/*", function(request, response)
 //////////
 
 var server = http.Server(application);
-server.listen(80, function()
+server.listen(process.env.PORT || 80, function()
 {
-    console.log("LevelUp is on!");
+    console.log("LevelUp is at " + (process.env.PORT || 80));
 });
 
 //////////////
