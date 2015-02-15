@@ -53,3 +53,8 @@ frisby.create("Get all users")
         }
     })
     .toss();
+
+frisby.create("Nuke all users")
+    .get(server + "/nuke")
+    .expectJSON({})
+    .toss();

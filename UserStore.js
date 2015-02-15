@@ -44,7 +44,8 @@ UserStore.prototype.addUser = function(name)
     var user = 
     {
         "name": name,
-        "lvl": 1, "xp": 0
+        "lvl": 1, "xp": 0,
+        "date": Date.now()
     }
 
     this.users[name] = user;
@@ -69,8 +70,18 @@ UserStore.prototype.untzUser = function(name)
         user.xp = 0;
     }
 
+    user.date = Date.now();
+
     this.trigger("untz user", user);
     return user;
+}
+
+UserStore.prototype.nukeUsers = function()
+{
+    this.users = {};
+
+    this.trigger("nuke users", this.users);
+    return this.users;
 }
 
 UserStore.prototype.trigger = function(action, data)

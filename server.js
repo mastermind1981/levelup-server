@@ -49,6 +49,12 @@ application["get"]("/users/:name/untz", function(request, response)
     response.send(user);
 });
 
+application["get"]("/nuke", function(request, response)
+{
+    var users = MyUsers.nukeUsers();
+    response.send(users)
+});
+
 ////////////
 //Serving//
 //////////
@@ -71,14 +77,19 @@ io.on("connection", function(socket)
     {
         socket.emit("add user", users[name]);
     }
-
+    
     MyUsers.on("add user", function(user)
     {
         socket.emit("add user", user);
-    })
+    });
 
     MyUsers.on("untz user", function(user)
     {
         socket.emit("untz user", user);
-    })
+    });
+
+    MyUsers.on("nuke users", function()
+    {
+        socket.emit("nuke users");
+    });
 });
